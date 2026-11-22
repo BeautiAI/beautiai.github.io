@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BeautiAI · 街拍图鉴</title>
+<meta name="description" content="BeautiAI 街拍图鉴 — 按模特与分类整理的写真套图库。">
+<meta name="theme-color" content="#f8f5f0">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar__in">
+    <svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="g" x1="4" y1="2" x2="28" y2="30" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#c2603f"/><stop offset="1" stop-color="#7a3a53"/>
+        </linearGradient>
+      </defs>
+      <rect x="1.2" y="1.2" width="29.6" height="29.6" rx="9.2" fill="url(#g)"/>
+      <path d="M12 9.4h5.6c2.5 0 4.2 1.35 4.2 3.5 0 1.4-.78 2.4-2.05 2.9 1.55.42 2.5 1.52 2.5 3.1 0 2.3-1.85 3.7-4.6 3.7H12V9.4Z" fill="#fff" fill-opacity=".94"/>
+      <path d="M15.1 12.2v3.1h2.2c1.1 0 1.8-.6 1.8-1.55 0-.95-.7-1.55-1.8-1.55h-2.2Zm0 5.4v3.2h2.6c1.2 0 1.95-.62 1.95-1.6 0-1-.75-1.6-1.95-1.6h-2.6Z" fill="#b4452f"/>
+    </svg>
+    <span class="wordmark">BeautiAI</span>
+  </div>
+</header>
+
+<div class="shell">
+  <div id="cast"></div>
+  <main id="main"></main>
+</div>
+
+<footer class="foot">
+  <div class="foot__in">
+    <b>BeautiAI</b>
+    <span class="dot"></span>
+    <span>街拍图鉴 · 作品版权归原作者所有</span>
+    <span class="right">Built with AI</span>
+  </div>
+</footer>
+
+<div class="lb" id="lb" data-open="false" aria-hidden="true" role="dialog" aria-label="图片预览">
+  <button class="lb__close" id="lbClose" aria-label="关闭">✕</button>
+  <button class="lb__btn lb__prev" id="lbPrev" aria-label="上一张">‹</button>
+  <button class="lb__btn lb__next" id="lbNext" aria-label="下一张">›</button>
+  <figure>
+    <img id="lbImg" alt="">
+    <figcaption id="lbCap"></figcaption>
+  </figure>
+</div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
