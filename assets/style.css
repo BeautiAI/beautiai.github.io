@@ -147,11 +147,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 /* ---------- 创作区 ---------- */
 .studio{
-  margin:44px 0 6px;padding:26px 30px;background:var(--card);
+  margin:44px 0 6px;padding:26px 30px 22px;background:var(--card);
   border:1px solid var(--line);border-radius:22px;
   box-shadow:0 1px 0 rgba(23,21,15,.03),0 26px 56px -46px rgba(60,42,26,.55);
-  display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:38px;align-items:center}
-.studio__lead{min-width:0}
+  display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+  grid-template-areas:"lead form" "cast cast";
+  gap:30px 38px;align-items:center}
+.studio__lead{grid-area:lead;min-width:0}
 .studio__name{margin:7px 0 0;font-family:var(--serif);font-weight:600;font-size:clamp(26px,3vw,38px);
   line-height:1.16;letter-spacing:-.01em}
 .studio__sub{margin:9px 0 0;font-size:12.5px;color:var(--muted);line-height:1.7}
@@ -174,7 +176,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .sbtn--go:hover{background:#2a251d;border-color:#2a251d;color:#fff}
 .sbtn:disabled{opacity:.5;cursor:not-allowed}
 .sbtn[hidden]{display:none}
-.studio__form{min-width:0}
+.studio__form{grid-area:form;min-width:0}
+.studio__cast{
+  grid-area:cast;min-width:0;padding-top:20px;border-top:1px solid var(--line)}
+.studio__cast .cast__hd{margin-bottom:14px}
+.studio__cast .marq{margin-top:0;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 10px,#000 calc(100% - 10px),transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 10px,#000 calc(100% - 10px),transparent 100%)}
 .studio__lab{display:block;margin-bottom:8px;font-size:10.5px;font-weight:600;letter-spacing:.2em;
   text-transform:uppercase;color:var(--muted)}
 .studio__ta{
@@ -347,7 +355,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .hero{grid-template-columns:1fr;gap:20px;padding:22px 20px;text-align:left}
   .hero__ava{width:96px;height:96px}
   .detail{padding-top:24px}
-  .studio{padding:22px 20px;border-radius:18px;grid-template-columns:1fr;gap:22px}
+  .studio{padding:22px 20px;border-radius:18px;grid-template-columns:1fr;
+    grid-template-areas:"lead" "form" "cast";gap:22px}
   .studio__ref{margin-top:16px}
 }
 @media (max-width:640px){

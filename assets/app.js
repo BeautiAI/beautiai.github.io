@@ -87,9 +87,8 @@
       <p class="side__note">${DATA.stats.models} 位模特 · ${DATA.stats.sets} 套图 · ${DATA.stats.images} 张图片</p>`;
   }
 
-  /* ---------- render: 模特区（横向轮播） ---------- */
-  function renderCast() {
-    const source = state.source ? srcOf(state.source) : null;
+  /* ---------- render: 模特轮播（收在创作卡片内） ---------- */
+  function renderMarquee() {
     const faces = DATA.models;
 
     const who = (m, dup) => `
@@ -106,7 +105,7 @@
     const dur = Math.max(60, Math.round((faces.length * 118) / 58));
 
     return `
-      <section class="cast" aria-label="模特">
+      <div class="studio__cast">
         <div class="cast__hd">
           <span class="eyebrow">MODEL / 模特</span>
           <h2>模特</h2>
@@ -118,7 +117,7 @@
             ${faces.map(m => who(m, true)).join('')}
           </div>
         </div>
-      </section>`;
+      </div>`;
   }
 
   /* ---------- render: 创作区 ---------- */
@@ -154,7 +153,8 @@
           <span class="studio__status" id="stStatus"></span>
         </div>
         <div class="studio__out" id="stOut"></div>
-      </div>`;
+      </div>
+      ${renderMarquee()}`;
   }
 
   function paintStudio() {
@@ -327,7 +327,6 @@
   /* ---------- paint ---------- */
   function paintList() {
     $('#side').innerHTML = renderSide();
-    $('#cast').innerHTML = renderCast();
     $('#main').innerHTML = renderGallery();
     markFace();
     syncArrows($('#mrowTrack'));
@@ -344,7 +343,6 @@
     const h = location.hash || '#/';
     const m = h.match(/^#\/set\/([\w-]+)/);
     const main = $('#main');
-    const cast = $('#cast');
     const side = $('#side');
     const studio = $('#studio');
     const shell = $('#shell');
@@ -354,7 +352,6 @@
       drawer.close();
       $('#sideBtn').hidden = true;
       side.hidden = true; side.innerHTML = '';
-      cast.hidden = true; cast.innerHTML = '';
       studio.hidden = true;
       main.innerHTML = renderDetail(m[1]);
       document.title = `${DATA.sets.find(s => s.id === m[1])?.title || '套图'} · BeautiAI`;
@@ -363,7 +360,6 @@
       shell.dataset.view = 'list';
       side.hidden = false;
       $('#sideBtn').hidden = false;
-      cast.hidden = false;
       studio.hidden = false;
       paintList();
     }
