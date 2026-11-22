@@ -361,6 +361,7 @@
     $('#main').innerHTML = renderGallery();
     markFace();
     syncArrows($('#mrowTrack'));
+    $('#barTag').innerHTML = `<b>${DATA.stats.sets}</b> 套图 · <b>${DATA.stats.images}</b> 张图片 · <b>${DATA.stats.models}</b> 位模特`;
     const src = state.source ? srcOf(state.source) : null;
     document.title = src ? `${src.name} · BeautiAI` : 'BeautiAI · 街拍图鉴';
   }
