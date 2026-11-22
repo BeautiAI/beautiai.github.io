@@ -24,12 +24,24 @@
       <path d="M15.1 12.2v3.1h2.2c1.1 0 1.8-.6 1.8-1.55 0-.95-.7-1.55-1.8-1.55h-2.2Zm0 5.4v3.2h2.6c1.2 0 1.95-.62 1.95-1.6 0-1-.75-1.6-1.95-1.6h-2.6Z" fill="#b4452f"/>
     </svg>
     <span class="wordmark">BeautiAI</span>
+    <button class="bar__btn" id="sideBtn" aria-expanded="false" aria-controls="side">
+      <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <path d="M3 5.5h14M3 10h9M3 14.5h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      </svg>
+      <span>分类</span>
+    </button>
   </div>
 </header>
 
-<div class="shell">
-  <div id="cast"></div>
-  <main id="main"></main>
+<div class="scrim" id="scrim"></div>
+
+<div class="shell" id="shell">
+  <aside class="side" id="side" aria-label="分类" data-open="false"></aside>
+  <div class="content">
+    <section id="studio" class="studio" aria-label="创作区"></section>
+    <div id="cast"></div>
+    <main id="main"></main>
+  </div>
 </div>
 
 <footer class="foot">
