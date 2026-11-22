@@ -7,7 +7,7 @@
 <meta name="description" content="BeautiAI 街拍图鉴 — 按模特与分类整理的写真套图库。">
 <meta name="theme-color" content="#f8f5f0">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/style.css?v=20261122c">
+<link rel="stylesheet" href="assets/style.css?v=20261122d">
 </head>
 <body>
 
@@ -52,6 +52,18 @@
   </div>
 </footer>
 
+<div class="mlib" id="mlib" data-open="false" aria-hidden="true" role="dialog" aria-label="模特库">
+  <div class="mlib__panel">
+    <header class="mlib__hd">
+      <span class="eyebrow">MODEL · 模特库</span>
+      <h2>选择参考模特</h2>
+      <span class="mlib__num" id="mlibNum"></span>
+      <button class="mlib__close" id="mlibClose" aria-label="关闭模特库">✕</button>
+    </header>
+    <div class="mlib__grid" id="mlibGrid"></div>
+  </div>
+</div>
+
 <div class="lb" id="lb" data-open="false" aria-hidden="true" role="dialog" aria-label="图片预览">
   <button class="lb__close" id="lbClose" aria-label="关闭">✕</button>
   <button class="lb__btn lb__prev" id="lbPrev" aria-label="上一张">‹</button>
@@ -62,6 +74,6 @@
   </figure>
 </div>
 
-<script src="assets/app.js?v=20261122c"></script>
+<script src="assets/app.js?v=20261122d"></script>
 </body>
 </html>

@@ -120,6 +120,37 @@
       </div>`;
   }
 
+  /* ---------- 模特库浮层（格栅） ---------- */
+  const mlib = {
+    open() {
+      const grid = $('#mlibGrid');
+      if (!grid.dataset.built) {
+        grid.innerHTML = DATA.models.map(m => `
+          <button class="mface mface--grid" data-mid="${esc(m.id)}" data-name="${esc(m.name)}" data-src="${esc(m.avatar)}"
+                  aria-label="${esc(m.name)}" title="${esc(m.name)}"
+                  aria-pressed="${state.face && state.face.id === m.id}">
+            <span class="mface__img"><img src="${esc(m.avatar)}" alt="${esc(m.name)}" loading="lazy" decoding="async" ${hideOnError}></span>
+            <span class="mface__no">${esc(m.no)}</span>
+          </button>`).join('');
+        grid.dataset.built = '1';
+      }
+      $('#mlibNum').textContent = DATA.models.length + ' 位 · 滚动浏览，点击选用';
+      markFace();
+      $('#mlib').dataset.open = 'true';
+      $('#mlib').setAttribute('aria-hidden', 'false');
+      document.documentElement.style.overflow = 'hidden';
+      grid.scrollTop = 0;
+    },
+    close() {
+      const el = $('#mlib');
+      if (el.dataset.open !== 'true') return;
+      el.dataset.open = 'false';
+      el.setAttribute('aria-hidden', 'true');
+      if (!drawer.isOpen) document.documentElement.style.overflow = '';
+    },
+    get isOpen() { return $('#mlib').dataset.open === 'true'; }
+  };
+
   /* ---------- render: 创作区 ---------- */
   function facePreviewHTML() {
     if (!state.face) {
@@ -386,6 +417,7 @@
     $('#sideBtn').addEventListener('click', () => (drawer.isOpen ? drawer.close() : drawer.open()));
     $('#scrim').addEventListener('click', () => drawer.close());
     document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && mlib.isOpen) { mlib.close(); return; }
       if (e.key === 'Escape' && drawer.isOpen) drawer.close();
     });
 
@@ -411,6 +443,7 @@
       if (mface) {
         selectFace({ id: mface.dataset.mid, name: mface.dataset.name, src: mface.dataset.src, kind: 'model' });
         drawer.close();
+        mlib.close();
         scrollToStudio();
         return;
       }
@@ -425,9 +458,13 @@
         return;
       }
 
-      if (e.target.closest('#stPick')) { drawer.open(); return; }
+      if (e.target.closest('#stPick')) { mlib.open(); return; }
 
       if (e.target.closest('#stClear')) { selectFace(null); setStatus(''); return; }
+
+      if (e.target.closest('#mlibClose')) { mlib.close(); return; }
+
+      if (e.target.id === 'mlib') { mlib.close(); return; }
 
       if (e.target.closest('#stGo')) { runGenerate(); return; }
 

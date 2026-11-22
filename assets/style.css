@@ -145,6 +145,33 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .mrow__nav:hover{background:var(--ink);border-color:var(--ink);color:#fff}
 .mrow__nav:disabled{opacity:.28;pointer-events:none}
 
+/* ---------- 模特库浮层（格栅浏览） ---------- */
+.mlib{
+  position:fixed;inset:0;z-index:95;display:grid;place-items:center;padding:5vh 20px;
+  background:rgba(26,20,14,.42);opacity:0;pointer-events:none;transition:opacity .26s var(--ease);
+  -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.mlib[data-open="true"]{opacity:1;pointer-events:auto}
+.mlib__panel{
+  position:relative;width:min(1080px,100%);max-height:90vh;display:flex;flex-direction:column;
+  background:var(--paper);border:1px solid var(--line);border-radius:22px;overflow:hidden;
+  box-shadow:0 50px 100px -40px rgba(30,20,12,.6);
+  transform:translateY(14px) scale(.985);transition:transform .3s var(--ease)}
+.mlib[data-open="true"] .mlib__panel{transform:none}
+.mlib__hd{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 14px;
+  padding:24px 62px 16px 26px;border-bottom:1px solid var(--line)}
+.mlib__hd h2{margin:0;font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:.02em}
+.mlib__num{margin-left:auto;font-size:11.5px;color:var(--muted)}
+.mlib__close{position:absolute;top:18px;right:20px;width:30px;height:30px;border-radius:50%;
+  display:grid;place-items:center;color:var(--ink-2);border:1px solid var(--line);background:var(--card);font-size:13px}
+.mlib__close:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.mlib__grid{flex:1;min-height:0;overflow-y:auto;padding:22px 26px 28px;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:20px 14px;align-content:start;
+  scrollbar-width:thin}
+.mface--grid{width:100%;gap:7px}
+.mface--grid .mface__img{width:100%;height:auto;aspect-ratio:1/1}
+.mface--grid .mface__no{font-size:10.5px;letter-spacing:.04em}
+.mface--grid[aria-pressed="true"] .mface__no{color:var(--accent);font-weight:600}
+
 /* ---------- 创作区 ---------- */
 .studio{
   margin:44px 0 6px;padding:26px 30px 22px;background:var(--card);
@@ -358,6 +385,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .studio{padding:22px 20px;border-radius:18px;grid-template-columns:1fr;
     grid-template-areas:"lead" "form" "cast";gap:22px}
   .studio__ref{margin-top:16px}
+  .mlib{padding:3vh 12px}
+  .mlib__panel{max-height:94vh;border-radius:18px}
+  .mlib__hd{padding:20px 54px 14px 20px}
+  .mlib__grid{padding:18px 20px 22px;grid-template-columns:repeat(auto-fill,minmax(74px,1fr));gap:16px 10px}
 }
 @media (max-width:640px){
   .cast__hd .hint{margin-left:0;flex:1 0 100%;font-size:11px}
